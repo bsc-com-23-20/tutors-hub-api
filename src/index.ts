@@ -7,7 +7,7 @@ AppDataSource.initialize().then(async () => {
     const user = new Tutor()
     user.firstName = "Timber"
     user.lastName = "Saw"
-    user.subject = 25
+    user.subject = ""
     await AppDataSource.manager.save(user)
     console.log("Saved a new user with id: " + user.id)
 

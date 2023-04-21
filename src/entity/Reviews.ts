@@ -17,21 +17,5 @@ export class Tutor {
     lastName: string
 
     @Column()
-    emailAddress: string
-
-    @Column()
-    subject: string
-
-
-    @Column()
-    experience: string
-
-    @Column()
-    imageUrl: string
-
-    @Column()
-    modeOfDelivery: string
-
-    @Column()
-    contactDetails: string
+    comment: string
 }
