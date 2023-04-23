@@ -1,9 +1,9 @@
 import "reflect-metadata"
-import { DataSource } from "typeorm"
 import { Tutor } from "./entity/Tutor"
 import { Reviews } from "./entity/Reviews"
+import  {TypeOrmModuleOptions} from '@nestjs/typeorm'
 
-export const AppDataSource = new DataSource({
+export const tutorshubDataSource: TypeOrmModuleOptions = {
     type: "mysql",
     host: "localhost",
     port: 3306,
@@ -14,5 +14,5 @@ export const AppDataSource = new DataSource({
     logging: false,
     entities: [Tutor, Reviews],
     migrations: [],
-    subscribers: [],
-})
+    subscribers: [], 
+}
