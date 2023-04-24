@@ -1,16 +1,19 @@
-import {Controller, Post, Body, Get, Query } from '@nestjs/common'
+import {Controller, Delete, Get, Query, Param } from '@nestjs/common'
 import { TutorService } from './tutor.service';
-import { TutorDetails } from '../authentication/dto/register-dto';
-import { LoginData } from '../authentication/dto/login-dto';
 
-@Controller('tutor')
+@Controller('tutors')
 export class TutorController{
    constructor(private tutorService: TutorService){}
 
-   @Get('tutors')
+   @Get()
    getBySubject(@Query('subject') subject: string) {
        return this.tutorService.getBySubject(subject)
    }
+   @Delete(':email')
+   deleteByEmail(@Param('email') email: string) {
+       return this.tutorService.deleteByEmail(email)
+   }
+
 
    
 }

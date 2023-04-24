@@ -10,4 +10,4 @@ import { Tutor } from '../entity/Tutor';
     controllers: [TutorController],
     providers: [TutorService]
 })
-export class AuthModule{}
+export class TutorModule{}

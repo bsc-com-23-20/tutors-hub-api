@@ -17,15 +17,17 @@ export class TutorService{
             const tutors = await this.tutorReository.findBy({subject})
             // if tutors are found 
             if(tutors) return tutors
-
-            const deleteTutors = await this.tutorReository.delete({})
-            
-            
             // otherwise
             
         } catch (error) {
             return error
         }
+    }
+
+    async deleteByEmail(email: string) {
+        const response = await this.tutorReository.delete({emailAddress: email})
+
+        return response
     }
 
     
