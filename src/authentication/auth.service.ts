@@ -14,7 +14,7 @@ export class AuthService{
 return 'signin'
     }
     async signup(){
-       const tutorAccount = await this.tutorReository.find({})
+    const tutorAccount = await this.tutorReository.save([])
       return tutorAccount
     }
 }
