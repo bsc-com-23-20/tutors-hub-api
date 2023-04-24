@@ -16,5 +16,6 @@ exports.tutorshubDataSource = {
     entities: [Tutor_1.Tutor, Reviews_1.Reviews],
     migrations: [],
     subscribers: [],
+    autoLoadEntities: true
 };
 //# sourceMappingURL=data-source.js.map

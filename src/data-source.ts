@@ -15,4 +15,5 @@ export const tutorshubDataSource: TypeOrmModuleOptions = {
     entities: [Tutor, Reviews],
     migrations: [],
     subscribers: [], 
+    autoLoadEntities: true
 }
