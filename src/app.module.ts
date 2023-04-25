@@ -5,9 +5,10 @@ import {AuthModule} from './authentication/auth.module';
 import {TypeOrmModule} from '@nestjs/typeorm'
 import {tutorshubDataSource} from './data-source'
 import { TutorModule } from './Tutors/tutor.module';
+import { ReviewModule } from './reviews/reviews.module';
 
 @Module({
-  imports: [AuthModule, TutorModule, TypeOrmModule.forRoot(tutorshubDataSource)],
+  imports: [AuthModule, TutorModule, ReviewModule ,TypeOrmModule.forRoot(tutorshubDataSource)],
   controllers: [AppController],
   providers: [AppService],
 })

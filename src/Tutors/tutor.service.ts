@@ -14,7 +14,7 @@ export class TutorService{
 
     async getBySubject(subject: string) {
         try {
-            const tutors = await this.tutorReository.findBy({subject})
+            const tutors = await this.tutorReository.findOneBy({subject})
             // if tutors are found 
             if(tutors) return tutors
             // otherwise

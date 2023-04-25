@@ -14,6 +14,8 @@ export class TutorController{
        return this.tutorService.deleteByEmail(email)
    }
 
+   
+
 
    
 }
