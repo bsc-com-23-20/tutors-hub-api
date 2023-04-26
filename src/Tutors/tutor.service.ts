@@ -22,6 +22,7 @@ export class TutorService{
         } catch (error) {
             return error
         }
+        
     }
 
     async deleteByEmail(email: string) {
