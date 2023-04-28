@@ -32,4 +32,9 @@ export class AuthService{
             return error
         }
     }
+
+    validateUser(token: string): { username: string, password: string } {
+        // Logic to validate the token and return the user object
+        return { username: 'user', password: 'password' };
+      }
 }

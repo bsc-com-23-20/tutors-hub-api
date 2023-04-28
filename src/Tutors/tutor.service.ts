@@ -1,4 +1,4 @@
-import {Injectable, UnauthorizedException, Delete} from '@nestjs/common'
+import {Injectable, UnauthorizedException, Delete, } from '@nestjs/common'
 import {InjectRepository} from '@nestjs/typeorm'
 import {Repository} from 'typeorm'
 import { Tutor } from '../entity/Tutor';
@@ -29,6 +29,10 @@ export class TutorService{
         const response = await this.tutorReository.delete({emailAddress: email})
 
         return response
+    }
+
+       async update(id: number, updateDto: TutorDetails) {
+        await this.tutorReository.update({id}, {...updateDto})
     }
 
     
