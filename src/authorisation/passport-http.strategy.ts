@@ -9,13 +9,13 @@ export class HttpBearerStrategy extends PassportStrategy(Strategy, 'bearer') {
         super()
     }
 
-    // async validate(token: string): Promise<{username: string, password: string}> {
-    //     const user = await this.authService.validateUser(token);
-    //     if (!user) {
-    //       throw new UnauthorizedException();
-    //     }
-    //     return user;
-    //   }
+    async validate(token: string): Promise<{username: string, password: string}> {
+        const user = await this.authService.validateUser(token);
+        if (!user) {
+          throw new UnauthorizedException();
+        }
+        return user;
+      }
 }
 
 
