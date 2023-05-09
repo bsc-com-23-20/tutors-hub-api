@@ -1,6 +1,6 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+// import { AppController } from './app.controller';
+// import { AppService } from './app.service';
 import {AuthModule} from './authentication/auth.module';
 import {TypeOrmModule} from '@nestjs/typeorm'
 import {tutorshubDataSource} from './data-source'
@@ -11,8 +11,8 @@ import { ReviewModule } from './reviews/reviews.module';
 
 @Module({
   imports: [AuthModule, TutorModule, ReviewModule ,TypeOrmModule.forRoot(tutorshubDataSource)],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
 

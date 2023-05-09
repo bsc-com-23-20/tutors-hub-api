@@ -22,4 +22,7 @@ export class ReviewService {
         }
   
     }
+    fetchReviews(){
+        return this.tutorRepository.find()
+    }
 }
