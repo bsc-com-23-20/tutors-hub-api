@@ -14,8 +14,20 @@ export class TutorController{
    constructor(private tutorService: TutorService){}
 
    @Get()
+    getPosts()
+     {
+        return this.tutorService.fetchPosts()
+        }
+
+
+   @Get('subject')
    getBySubject(@Query('subject') subject: string) {
        return this.tutorService.getBySubject(subject)
+   }
+
+   @Get('location')
+   getByLocation(@Query('location') location: string) {
+       return this.tutorService.getByLocation(location)
    }
 
 

@@ -9,6 +9,8 @@ export class TutorDetails {
     subject: string
     
     experience: string
+
+    location: string
     
     imageUrl: string
     

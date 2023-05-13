@@ -1,9 +1,10 @@
 import {Injectable, UnauthorizedException, Delete, } from '@nestjs/common'
 import {InjectRepository} from '@nestjs/typeorm'
-import {Repository} from 'typeorm'
+import {Repository, FindOptionsWhere} from 'typeorm'
 import { Tutor } from '../entity/Tutor';
 import { TutorDetails } from '../authentication/dto/register-dto';
 import { LoginData } from '../authentication/dto/login-dto';
+import { stringLiteral } from '@babel/types';
 
 @Injectable()
 export class TutorService{
@@ -11,6 +12,10 @@ export class TutorService{
         @InjectRepository(Tutor)
         private tutorReository: Repository<Tutor>
     ){}
+
+    fetchPosts(){
+        return this.tutorReository.find()
+    }
 
     async getBySubject(subject: string) {
         try {
@@ -22,6 +27,8 @@ export class TutorService{
         } catch (error) {
             return error
         }
+
+        
         
     }
 
@@ -39,5 +46,19 @@ export class TutorService{
         await this.tutorReository.update({id}, {...updateTutorDetails})
     }
 
+    async getByLocation(location: string) {
+        try {
+            const options: FindOptionsWhere<Tutor> = { location };
+            const tutors = await this.tutorReository.findOneBy(options);
+            // const tutors = await this.tutorReository.findOneBy({location})
+            // if tutors are found 
+            if(tutors) return tutors
+            // otherwise
+            
+        } catch (error) {
+            return error
+        }
+
     
+}
 }

@@ -34,4 +34,7 @@ export class Tutor {
 
     @Column()
     contactDetails: string
+
+    @Column()
+    location: string
 }
