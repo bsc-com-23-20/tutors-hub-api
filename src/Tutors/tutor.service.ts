@@ -25,14 +25,18 @@ export class TutorService{
         
     }
 
+    // async updateProduct(updateProductDetails: UpdateProductDto, product_id: number) {
+    //     return this.productsRepository.update({product_id},{ ...updateProductDetails});
+    //   }
+
     async deleteByEmail(email: string) {
         const response = await this.tutorReository.delete({emailAddress: email})
 
         return response
     }
 
-       async update(id: number, updateDto: TutorDetails) {
-        await this.tutorReository.update({id}, {...updateDto})
+       async updateTutor(id: number, updateTutorDetails: TutorDetails) {
+        await this.tutorReository.update({id}, {...updateTutorDetails})
     }
 
     

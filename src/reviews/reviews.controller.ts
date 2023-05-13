@@ -1,4 +1,4 @@
-import {Controller, Post, Body, Get } from '@nestjs/common'
+import {Controller, Post, Body, Get, Put, ParseIntPipe, Param, Patch, Delete } from '@nestjs/common'
 import { ReviewService } from './reviews.service';
 import { ReviewerDetails } from '../authentication/dto/reviews-dto';
 
@@ -19,5 +19,28 @@ export class ReviewController{
      {
         return this.reviewService.fetchReviews()
         }
+
+        @Patch(':id')
+    async updateproduct(
+    @Body() updateReview: ReviewerDetails,
+    @Param('id',  ParseIntPipe) id: number) {
+    return await this.reviewService.updateReviews(updateReview, id);
+  }
+
+  
+
+  @Delete(':id')
+  async deleteProductById(@Param('id', ParseIntPipe) id: number,){
+    await this.reviewService.deleteById(id)
+  }
+  
+
+
+    
+//     @Patch(':id')
+//   update(@Param('id') id: number, @Body() updateDetails: ReviewerDetails) {
+//     return this.reviewService.update(+id,);
+//   }
+       
 
 }

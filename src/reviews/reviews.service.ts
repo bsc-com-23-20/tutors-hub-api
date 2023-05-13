@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Reviews } from '../entity/Reviews';
 import { Repository } from 'typeorm';
@@ -25,4 +25,20 @@ export class ReviewService {
     fetchReviews(){
         return this.tutorRepository.find()
     }
+
+    async updateReviews(updateReview: ReviewerDetails, id: number) {
+        return this.tutorRepository.update({id},{ ...updateReview});
+      }
+
+      async deleteById(id: number) {
+        const response = await this.tutorRepository.delete({id})
+
+        return response
+    }
+
+   
+      
+      
+
+    
 }
