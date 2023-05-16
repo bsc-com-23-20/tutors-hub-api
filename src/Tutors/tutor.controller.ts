@@ -4,9 +4,12 @@ import { AuthGuard } from '../auth/auth.guard'
 import { ValidatePipe } from '../validate/validate.pipe';
 import { HttpBearerGuard } from '../authorisation/http-bearer.guard';
 import { TutorDetails } from '../authentication/dto/register-dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('tutors')
 // @UseGuards(new AuthGuard())
+
+@ApiTags('Tutors')
 
   
 
