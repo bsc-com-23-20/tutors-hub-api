@@ -5,6 +5,7 @@ import { Tutor } from '../entity/Tutor';
 import { TutorDetails } from './dto/register-dto';
 import { LoginData } from './dto/login-dto';
 import { JwtService } from '@nestjs/jwt';
+import { ApiBody } from '@nestjs/swagger';
 
 
 @Injectable()
@@ -36,6 +37,7 @@ export class AuthService{
     // return result;
   
      @UseGuards()
+     
     async signup(tutorDetails: TutorDetails) {
         try {
             const tutor =  this.tutorReository.create({...tutorDetails})

@@ -2,7 +2,7 @@ import {Controller, Post, Body, UseGuards, HttpCode, HttpStatus } from '@nestjs/
 import { AuthService } from './auth.service';
 import { TutorDetails } from './dto/register-dto';
 import { LoginData } from './dto/login-dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiBody } from '@nestjs/swagger';
 import { Role } from './Roles/role.enum';
 import { Roles } from './Roles/roles.decorator';
 // import { JwtService } from '@nestjs/jwt';
@@ -31,6 +31,7 @@ export class AuthController{
 // }
 
    @UseGuards()
+   @ApiBody({type: TutorDetails})
    @Post('signup')
    @Roles(Role.Tutor)
    signup(@Body() tutorDetails: TutorDetails) {
