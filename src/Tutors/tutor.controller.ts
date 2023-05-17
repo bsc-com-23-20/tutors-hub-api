@@ -4,7 +4,7 @@ import { AuthGuard } from '../auth/auth.guard'
 import { ValidatePipe } from '../validate/validate.pipe';
 import { HttpBearerGuard } from '../authorisation/http-bearer.guard';
 import { TutorDetails } from '../authentication/dto/register-dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiNotFoundResponse } from '@nestjs/swagger';
 import { Role } from '../authentication/Roles/role.enum';
 import { Roles } from '../authentication/Roles/roles.decorator';
 
@@ -19,6 +19,9 @@ export class TutorController{
    constructor(private tutorService: TutorService){}
 
    @Get()
+   @ApiOkResponse({ description: 'The resource was returned successfully' })
+  @ApiForbiddenResponse({ description: 'Unauthorized Request' })
+//   @ApiNotFoundResponse({ description: 'Resource not found' })
 
     getPosts()
      {
@@ -27,12 +30,18 @@ export class TutorController{
 
 
    @Get('subject')
+//    @ApiOkResponse({ description: 'The resource was returned successfully' })
+//   @ApiForbiddenResponse({ description: 'Unauthorized Request' })
+//   @ApiNotFoundResponse({ description: 'Resource not found' })
    @Roles(Role.Users)
    getBySubject(@Query('subject') subject: string) {
        return this.tutorService.getBySubject(subject)
    }
 
    @Get('location')
+//    @ApiOkResponse({ description: 'The resource was returned successfully' })
+//   @ApiForbiddenResponse({ description: 'Unauthorized Request' })
+//   @ApiNotFoundResponse({ description: 'Resource not found' })
    @Roles(Role.Users)
    getByLocation(@Query('location') location: string) {
        return this.tutorService.getByLocation(location)
