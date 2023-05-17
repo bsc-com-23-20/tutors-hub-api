@@ -28,6 +28,14 @@ export class TutorController{
         return this.tutorService.fetchPosts()
         }
 
+        
+       
+        @Get(':id')
+  findOne(@Param('id') id: number) {
+    return this.tutorService.getById(id);
+  }
+
+
 
    @Get('subject')
 //    @ApiOkResponse({ description: 'The resource was returned successfully' })

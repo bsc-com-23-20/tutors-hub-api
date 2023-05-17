@@ -1,4 +1,4 @@
-import {Injectable, UnauthorizedException, Delete, } from '@nestjs/common'
+import {Injectable, UnauthorizedException, Delete, Get, Param, } from '@nestjs/common'
 import {InjectRepository} from '@nestjs/typeorm'
 import {Repository, FindOptionsWhere} from 'typeorm'
 import { Tutor } from '../entity/Tutor';
@@ -8,6 +8,7 @@ import { stringLiteral } from '@babel/types';
 
 @Injectable()
 export class TutorService{
+    usersService: any;
     constructor(
         @InjectRepository(Tutor)
         private tutorReository: Repository<Tutor>
@@ -16,6 +17,10 @@ export class TutorService{
     fetchPosts(){
         return this.tutorReository.find({relations: {reviews: true}, select: {reviews: {firstName: true, lastName: true, comment: true}} })
     }
+
+    getById(id: number){
+    return this.tutorReository.findOneById(id);
+  }
 
     // async findByUsername(username: string): Promise< | undefined> {
     //     return this.tutorReository.findOne({ username });
