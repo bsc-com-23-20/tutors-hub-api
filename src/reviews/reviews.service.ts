@@ -14,9 +14,9 @@ export class ReviewService {
     async review(reviews: ReviewerDetails) {
         try {
             const review =  this.tutorRepository.create({...reviews})
-            const ReviewerDetails = await this.tutorRepository.save(review)
+            const savedReview = await this.tutorRepository.save(review)
           
-            return review
+            return savedReview
         } catch (error) {
             return error
         }

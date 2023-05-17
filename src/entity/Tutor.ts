@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column,OneToMany } from "typeorm"
+import {Reviews} from "./Reviews"
 
 @Entity()
 export class Tutor {
@@ -37,4 +38,8 @@ export class Tutor {
 
     @Column()
     location: string
+
+
+    @OneToMany(() => Reviews, (review) => review.user)
+    reviews: Reviews[]
 }

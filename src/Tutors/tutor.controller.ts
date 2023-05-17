@@ -5,6 +5,8 @@ import { ValidatePipe } from '../validate/validate.pipe';
 import { HttpBearerGuard } from '../authorisation/http-bearer.guard';
 import { TutorDetails } from '../authentication/dto/register-dto';
 import { ApiTags } from '@nestjs/swagger';
+import { Role } from '../authentication/Roles/role.enum';
+import { Roles } from '../authentication/Roles/roles.decorator';
 
 @Controller('tutors')
 // @UseGuards(new AuthGuard())
@@ -17,6 +19,7 @@ export class TutorController{
    constructor(private tutorService: TutorService){}
 
    @Get()
+
     getPosts()
      {
         return this.tutorService.fetchPosts()
@@ -24,17 +27,20 @@ export class TutorController{
 
 
    @Get('subject')
+   @Roles(Role.Users)
    getBySubject(@Query('subject') subject: string) {
        return this.tutorService.getBySubject(subject)
    }
 
    @Get('location')
+   @Roles(Role.Users)
    getByLocation(@Query('location') location: string) {
        return this.tutorService.getByLocation(location)
    }
 
 
    @Patch(':id')
+   @Roles(Role.Tutor)
     async updateproduct(
     @Body() updateTutorDetails: TutorDetails,
     @Param('id',  ParseIntPipe) id: number) {
@@ -43,6 +49,7 @@ export class TutorController{
 
    @UseGuards(HttpBearerGuard)
    @Delete(':email')
+   @Roles(Role.Tutor)
    deleteByEmail(@Param('email') email: string) {
        return this.tutorService.deleteByEmail(email)
    }

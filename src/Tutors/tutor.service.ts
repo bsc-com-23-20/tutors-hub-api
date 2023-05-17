@@ -14,8 +14,12 @@ export class TutorService{
     ){}
 
     fetchPosts(){
-        return this.tutorReository.find()
+        return this.tutorReository.find({relations: {reviews: true}, select: {reviews: {firstName: true, lastName: true, comment: true}} })
     }
+
+    // async findByUsername(username: string): Promise< | undefined> {
+    //     return this.tutorReository.findOne({ username });
+    //   }
 
     async getBySubject(subject: string) {
         try {
