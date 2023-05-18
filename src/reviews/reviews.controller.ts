@@ -14,6 +14,7 @@ export class ReviewController{
   
   @ApiBody({type: ReviewerDetails})
    @Post('reviews')
+   @ApiOperation({summary: 'reviewer post feedback or comments on a the tutors service with the specified id'})
    @Roles(Role.Users)
    review(@Body()reviews : ReviewerDetails) {
     return this.reviewService.review(reviews)
