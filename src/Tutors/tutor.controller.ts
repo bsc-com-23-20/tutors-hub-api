@@ -19,6 +19,7 @@ export class TutorController{
    constructor(private tutorService: TutorService){}
 
    @Get()
+   @ApiOperation({summary: 'gets all tutor accounts available, displays tutor information'})
    @ApiOkResponse({ description: 'The resource was returned successfully' })
   @ApiForbiddenResponse({ description: 'Unauthorized Request' })
 //   @ApiNotFoundResponse({ description: 'Resource not found' })
@@ -31,14 +32,15 @@ export class TutorController{
         
        
         @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.tutorService.getById(id);
+        @ApiOperation({summary: 'gets a tutor account with the specified id'})
+        findOne(@Param('id') id: number) {
+        return this.tutorService.getById(id);
   }
 
 
 
    @Get('subject')
-   @ApiOperation({summary: 'looks for a tuto with a matching subject as the one specified'})
+   @ApiOperation({summary: 'looks for a tutor with a matching subject as the one specified'})
 //    @ApiOkResponse({ description: 'The resource was returned successfully' })
 //   @ApiForbiddenResponse({ description: 'Unauthorized Request' })
 //   @ApiNotFoundResponse({ description: 'Resource not found' })
@@ -48,6 +50,7 @@ export class TutorController{
    }
 
    @Get('location')
+   @ApiOperation({summary: 'looks for a tutor with a matching location as the one specified'})
 //    @ApiOkResponse({ description: 'The resource was returned successfully' })
 //   @ApiForbiddenResponse({ description: 'Unauthorized Request' })
 //   @ApiNotFoundResponse({ description: 'Resource not found' })
@@ -58,6 +61,7 @@ export class TutorController{
 
 
    @Patch(':id')
+   @ApiOperation({summary: 'updates tutor information of the specified id and saves the updated tutor'})
    @ApiOkResponse({ description: 'The resource was updated successfully' })
   @ApiNotFoundResponse({ description: 'Resource not found' })
   @ApiForbiddenResponse({ description: 'Unauthorized Request' })
@@ -71,6 +75,7 @@ export class TutorController{
 
    @UseGuards(HttpBearerGuard)
    @Delete(':email')
+   @ApiOperation({summary: 'deletes a tutor account with the specified id'})
    @Roles(Role.Tutor)
    deleteByEmail(@Param('email') email: string) {
        return this.tutorService.deleteByEmail(email)
