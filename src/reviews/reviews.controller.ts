@@ -21,6 +21,7 @@ export class ReviewController{
     }
 
     @Get()
+    @ApiOperation({summary: 'gets all the reviews, displays all information about reviews'})
     @Roles(Role.Users)
     getReviews()
     
@@ -36,6 +37,7 @@ export class ReviewController{
 
 
     @Patch(':id')
+    @ApiOperation({summary: 'updates review information of the specified review'})
     @Roles(Role.Users)
     async updateproduct(
     @Body() updateReview: ReviewerDetails,
@@ -46,6 +48,7 @@ export class ReviewController{
   
 
   @Delete(':id')
+  @ApiOperation({summary: 'deletes the review of the specified id in the database'})
   @Roles(Role.Users)
   async deleteProductById(@Param('id', ParseIntPipe) id: number,){
     await this.reviewService.deleteById(id)
