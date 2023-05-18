@@ -7,7 +7,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('TutorsHub API')
-    .setDescription('The tutors API description')
+    .setDescription('Nestjs tutors Rest API ')
     .setVersion('1.0')
     .addTag('TutorsHub')
     .build();
