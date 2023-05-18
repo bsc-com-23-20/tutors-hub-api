@@ -22,10 +22,7 @@ export class TutorService{
     return this.tutorReository.findOneById(id);
   }
 
-    // async findByUsername(username: string): Promise< | undefined> {
-    //     return this.tutorReository.findOne({ username });
-    //   }
-
+    
     async getBySubject(subject: string) {
         try {
             const tutors = await this.tutorReository.findOneBy({subject})
@@ -41,9 +38,7 @@ export class TutorService{
         
     }
 
-    // async updateProduct(updateProductDetails: UpdateProductDto, product_id: number) {
-    //     return this.productsRepository.update({product_id},{ ...updateProductDetails});
-    //   }
+    
 
     async deleteByEmail(email: string) {
         const response = await this.tutorReository.delete({emailAddress: email})

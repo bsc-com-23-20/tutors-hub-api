@@ -2,7 +2,7 @@ import {Controller, Post, Body, UseGuards, HttpCode, HttpStatus } from '@nestjs/
 import { AuthService } from './auth.service';
 import { TutorDetails } from './dto/register-dto';
 import { LoginData } from './dto/login-dto';
-import { ApiTags, ApiBody, ApiCreatedResponse, ApiUnprocessableEntityResponse, ApiForbiddenResponse, ApiBadRequestResponse } from '@nestjs/swagger';
+import { ApiTags, ApiBody, ApiCreatedResponse, ApiUnprocessableEntityResponse, ApiForbiddenResponse, ApiBadRequestResponse, ApiOperation } from '@nestjs/swagger';
 import { Role } from './Roles/role.enum';
 import { Roles } from './Roles/roles.decorator';
 // import { JwtService } from '@nestjs/jwt';
@@ -14,6 +14,7 @@ export class AuthController{
     
    
    @Post('signin')
+   @ApiOperation({summary: 'checks for tutor account and signs them in if available'})
    @Roles(Role.Tutor)
    signin(@Body() logindata: LoginData){
        return this.authService.signin(logindata)
@@ -33,6 +34,7 @@ export class AuthController{
    @UseGuards()
    @ApiBody({type: TutorDetails})
    @Post('signup')
+   @ApiOperation({summary: 'creates a new tutor account, tutor has to post information'})
    @ApiCreatedResponse({ description: 'Created Succesfully' })
   @ApiUnprocessableEntityResponse({ description: 'Bad Request' })
   @ApiForbiddenResponse({ description: 'Unauthorized Request' })

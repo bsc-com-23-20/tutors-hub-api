@@ -4,7 +4,7 @@ import { AuthGuard } from '../auth/auth.guard'
 import { ValidatePipe } from '../validate/validate.pipe';
 import { HttpBearerGuard } from '../authorisation/http-bearer.guard';
 import { TutorDetails } from '../authentication/dto/register-dto';
-import { ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiNotFoundResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiNotFoundResponse, ApiUnprocessableEntityResponse, ApiOperation } from '@nestjs/swagger';
 import { Role } from '../authentication/Roles/role.enum';
 import { Roles } from '../authentication/Roles/roles.decorator';
 
@@ -38,6 +38,7 @@ export class TutorController{
 
 
    @Get('subject')
+   @ApiOperation({summary: 'looks for a tuto with a matching subject as the one specified'})
 //    @ApiOkResponse({ description: 'The resource was returned successfully' })
 //   @ApiForbiddenResponse({ description: 'Unauthorized Request' })
 //   @ApiNotFoundResponse({ description: 'Resource not found' })
@@ -57,6 +58,10 @@ export class TutorController{
 
 
    @Patch(':id')
+   @ApiOkResponse({ description: 'The resource was updated successfully' })
+  @ApiNotFoundResponse({ description: 'Resource not found' })
+  @ApiForbiddenResponse({ description: 'Unauthorized Request' })
+  @ApiUnprocessableEntityResponse({ description: 'Bad Request' })
    @Roles(Role.Tutor)
     async updateproduct(
     @Body() updateTutorDetails: TutorDetails,
