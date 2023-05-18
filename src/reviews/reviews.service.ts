@@ -26,6 +26,11 @@ export class ReviewService {
         return this.tutorRepository.find()
     }
 
+    getById(id: number){
+        return this.tutorRepository.findOneById(id);
+      }
+    
+
     async updateReviews(updateReview: ReviewerDetails, id: number) {
         return this.tutorRepository.update({id},{ ...updateReview});
       }
