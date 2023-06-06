@@ -41,7 +41,7 @@ export class AuthController{
    @ApiOperation({summary: 'creates a new tutor account, tutor has to post information'})
    @ApiCreatedResponse({ description: 'Created Succesfully' })
     @ApiUnprocessableEntityResponse({ description: 'Bad Request' })
-  @ApiForbiddenResponse({ description: 'Unauthorized Request' })
+    @ApiForbiddenResponse({ description: 'Unauthorized Request' })
 @ApiBadRequestResponse({description: 'Bad Request'})
    @Roles(Role.Tutor)
    signup(@Body() tutorDetails: TutorDetails) {
