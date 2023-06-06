@@ -10,7 +10,10 @@ export class TutorDetails {
     
     @ApiProperty()
     emailAddress: string
-    
+
+    @ApiProperty()
+    password: string
+
     @ApiProperty()
     subject: string
 

@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger'
 export class ReviewerDetails {
 
     @ApiProperty()
-    fistName: string
+    firstName: string
 
     @ApiProperty()
     lastName: string

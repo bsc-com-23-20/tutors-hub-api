@@ -6,4 +6,6 @@ export class LoginData {
     @ApiProperty()
     emailAddress: string
     
+    @ApiProperty()
+    password: string
 }

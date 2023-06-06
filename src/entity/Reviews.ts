@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
 import {Tutor} from "./Tutor"
+import { TutorDetails } from "../authentication/dto/register-dto";
 
 @Entity()
 export class Reviews {

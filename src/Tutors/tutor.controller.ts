@@ -75,7 +75,7 @@ export class TutorController{
 
    @UseGuards(HttpBearerGuard)
    @Delete(':email')
-   @ApiOperation({summary: 'deletes a tutor account with the specified id'})
+   @ApiOperation({summary: 'deletes a tutor account with the specified email'})
    @Roles(Role.Tutor)
    deleteByEmail(@Param('email') email: string) {
        return this.tutorService.deleteByEmail(email)

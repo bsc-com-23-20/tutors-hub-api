@@ -23,6 +23,9 @@ export class Tutor {
     @Column()
     subject: string
 
+    @Column()
+    password: string
+
 
     @Column()
     experience: string

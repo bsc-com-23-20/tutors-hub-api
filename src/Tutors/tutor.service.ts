@@ -12,6 +12,7 @@ export class TutorService{
     constructor(
         @InjectRepository(Tutor)
         private tutorReository: Repository<Tutor>
+        
     ){}
 
     fetchPosts(){
