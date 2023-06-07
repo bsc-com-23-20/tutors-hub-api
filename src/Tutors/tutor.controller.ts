@@ -105,6 +105,12 @@ export class TutorController{
    @Delete(':email')
    @ApiOperation({summary: 'deletes a tutor account with the specified email',
     description: 'enter the email address of the tutor you want to delete'})
+    @ApiResponse({status:200, description: 'delete was successful' })
+    @ApiResponse({status:500, description: 'Internal server error' })
+    @ApiResponse({status:403, description: 'Not allowed access' })
+    @ApiResponse({status:401, description: 'Unathourised' }) 
+    @ApiResponse({status:400, description: 'Bad Request' })
+    @ApiResponse({status:404, description: 'Not Found' })
    @Roles(Role.Tutor)
    deleteByEmail(@Param('email') email: string) {
        return this.tutorService.deleteByEmail(email)
