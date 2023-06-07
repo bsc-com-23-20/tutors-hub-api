@@ -43,6 +43,6 @@ export class Tutor {
     location: string
 
 
-    @OneToMany(() => Reviews, (review) => review.user)
+    @OneToMany(() => Reviews, (review) => review.tutorID)
     reviews: Reviews[]
 }

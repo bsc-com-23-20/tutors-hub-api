@@ -12,7 +12,7 @@ export class ReviewerDetails {
     comment: string
     
     @ApiProperty()
-    user:{ id: number
+    tutorID:{ id: number
     }
     
 }

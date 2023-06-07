@@ -21,9 +21,9 @@ export class Reviews {
     @Column()
     comment: string
 
-    @ManyToOne(() => Tutor, (user) => user.reviews)
+    @ManyToOne(() => Tutor, (tutorID) => tutorID.reviews)
    
-    user: Tutor
+    tutorID: Tutor
 }
 
 
