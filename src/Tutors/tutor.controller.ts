@@ -101,7 +101,7 @@ export class TutorController{
     return await this.tutorService.updateTutor(id,updateTutorDetails);
   }
 
-   @UseGuards(HttpBearerGuard)
+  // @UseGuards(HttpBearerGuard)
    @Delete(':email')
    @ApiOperation({summary: 'deletes a tutor account with the specified email',
     description: 'enter the email address of the tutor you want to delete'})
