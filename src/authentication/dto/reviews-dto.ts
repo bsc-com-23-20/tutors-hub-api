@@ -2,16 +2,16 @@ import { ApiProperty } from '@nestjs/swagger'
 
 export class ReviewerDetails {
 
-    @ApiProperty()
+    @ApiProperty({example:'Firstname'})
     firstName: string
 
-    @ApiProperty()
+    @ApiProperty({example:'Lastname'})
     lastName: string
 
-    @ApiProperty()
+    @ApiProperty({example:'This a comment'})
     comment: string
     
-    @ApiProperty()
+    @ApiProperty({example: 1})
     tutorID:{ id: number
     }
     

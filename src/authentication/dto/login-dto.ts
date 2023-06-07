@@ -3,9 +3,9 @@ export class LoginData {
     
     // username: string
     
-    @ApiProperty()
+    @ApiProperty({example:'mercy@gmail.com'})
     emailAddress: string
     
-    @ApiProperty()
+    @ApiProperty({example:'12rjh43'})
     password: string
 }

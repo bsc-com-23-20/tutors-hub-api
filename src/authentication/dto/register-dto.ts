@@ -2,34 +2,34 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class TutorDetails {
 
-    @ApiProperty()
+    @ApiProperty({example: 'laston'})
     firstName: string
     
-    @ApiProperty()
+    @ApiProperty({example: 'nago'})
     lastName: string
     
-    @ApiProperty()
+    @ApiProperty({example: 'mercy@gmail.com'})
     emailAddress: string
 
-    @ApiProperty()
+    @ApiProperty({example: '102993dkk'})
     password: string
 
-    @ApiProperty()
+    @ApiProperty({example: 'english'})
     subject: string
 
-    @ApiProperty()
+    @ApiProperty({example: '2 years'})
     experience: string
 
-    @ApiProperty()
+    @ApiProperty({example: 'zomba'})
     location: string
     
-    @ApiProperty()
+    @ApiProperty({example: 'bh.png'})
     imageUrl: string
     
-    @ApiProperty()
+    @ApiProperty({example: 'online'})
     modeOfDelivery: string
     
-    @ApiProperty()
+    @ApiProperty({example: '09982375766'})
     contactDetails: string
     
 }
