@@ -15,10 +15,6 @@ import { Roles } from './Roles/roles.decorator';
   
 export class AuthController{
    constructor(private authService: AuthService){}
-    
-   
-
-
 
 
 //   @HttpCode(HttpStatus.OK)
@@ -54,8 +50,6 @@ export class AuthController{
    }
 
 }
-
-
 
 
 // @Controller('auth')
