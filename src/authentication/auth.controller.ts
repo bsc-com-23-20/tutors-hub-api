@@ -8,8 +8,8 @@ import { Roles } from './Roles/roles.decorator';
 
 
 
-@Controller('auth')
-@ApiTags('authentication')
+@Controller('tutor')
+@ApiTags('A tutor')
 
   
   
