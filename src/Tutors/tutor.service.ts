@@ -1,4 +1,4 @@
-import {Injectable, UnauthorizedException, Delete, Get, Param, } from '@nestjs/common'
+import {Injectable, UnauthorizedException, Delete, Get, Param, Logger } from '@nestjs/common'
 import {InjectRepository} from '@nestjs/typeorm'
 import {Repository, FindOptionsWhere} from 'typeorm'
 import { Tutor } from '../entity/Tutor';
@@ -8,6 +8,7 @@ import { stringLiteral } from '@babel/types';
 
 @Injectable()
 export class TutorService{
+    logger = new Logger(TutorService.name);
     usersService: any;
     constructor(
         @InjectRepository(Tutor)
@@ -27,8 +28,9 @@ export class TutorService{
     async getBySubject(subject: string) {
         try {
             const tutors = await this.tutorReository.findOneBy({subject})
+            this.logger.log(tutors)
             // if tutors are found 
-            if(tutors) return tutors
+            return tutors
             // otherwise
             
         } catch (error) {

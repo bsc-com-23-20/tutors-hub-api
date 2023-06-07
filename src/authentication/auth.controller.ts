@@ -32,11 +32,12 @@ export class AuthController{
    @UseGuards()
    @ApiBody({type: TutorDetails})
    @Post('signup')
-   @ApiOperation({summary: 'creates a new tutor account, tutor has to post information'})
+   @ApiOperation({summary: 'creates a new tutor account, tutor has to post information', 
+   description: 'post tutors information as shown below'})
    @ApiCreatedResponse({ description: 'Created Succesfully' })
     @ApiUnprocessableEntityResponse({ description: 'Bad Request' })
     @ApiForbiddenResponse({ description: 'Unauthorized Request' })
-@ApiBadRequestResponse({description: 'Bad Request'})
+    @ApiBadRequestResponse({description: 'Bad Request'})
    @Roles(Role.Tutor)
    signup(@Body() tutorDetails: TutorDetails) {
     return this.authService.signup(tutorDetails)
@@ -45,7 +46,8 @@ export class AuthController{
 
     
    @Post('signin')
-   @ApiOperation({summary: 'checks for tutor account and signs them in if available'})
+   @ApiOperation({summary: 'checks for tutor account and signs them in if available',
+    description: 'logs a tutor in if they provided the correct email and password'})
    @Roles(Role.Tutor)
    signin(@Body() logindata: LoginData){
        return this.authService.signin(logindata)
