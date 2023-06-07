@@ -4,7 +4,7 @@ import { AuthGuard } from '../auth/auth.guard'
 import { ValidatePipe } from '../validate/validate.pipe';
 import { HttpBearerGuard } from '../authorisation/http-bearer.guard';
 import { TutorDetails } from '../authentication/dto/register-dto';
-import { ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiNotFoundResponse, ApiUnprocessableEntityResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiNotFoundResponse, ApiUnprocessableEntityResponse, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { Role } from '../authentication/Roles/role.enum';
 import { Roles } from '../authentication/Roles/roles.decorator';
 import { query } from 'express';
@@ -20,10 +20,15 @@ export class TutorController{
    constructor(private tutorService: TutorService){}
 
    @Get()
-   @ApiOperation({summary: 'gets all tutor accounts available, displays tutor information', description: 'hit execute and you should be able to see all tutor details'})
-   @ApiOkResponse({ description: 'The resource was returned successfully' })
-  @ApiForbiddenResponse({ description: 'Unauthorized Request' })
-//   @ApiNotFoundResponse({ description: 'Resource not found' })
+   @ApiOperation({summary: 'gets all tutor accounts available, displays tutor information', 
+   description: 'hit execute and you should be able to see all tutor details'})
+   @ApiResponse({status:200, description: 'The resource was returned successfully' })
+   @ApiResponse({status:500, description: 'Internal server error' })
+   @ApiResponse({status:403, description: 'Not allowed access' })
+   @ApiResponse({status:401, description: 'Unathourised' }) 
+   @ApiResponse({status:400, description: 'Bad Request' })
+   @ApiResponse({status:404, description: 'Not Found' })
+
 
     getPosts()
      {
@@ -33,7 +38,17 @@ export class TutorController{
         
        
         @Get(':id')
-        @ApiOperation({summary: 'gets a tutor account with the specified id', description: 'write the id of the tutor you want to retrieve'})
+        @ApiOperation({summary: 'gets a tutor account with the specified id', 
+        description: 'write the id of the tutor you want to retrieve'})
+        @ApiResponse({status:200, description: 'The resource was returned successfully' })
+        @ApiResponse({status:500, description: 'Internal server error' })
+        @ApiResponse({status:403, description: 'Not allowed access' })
+        @ApiResponse({status:401, description: 'Unathourised' }) 
+        @ApiResponse({status:400, description: 'Bad Request' })
+        @ApiResponse({status:404, description: 'Not Found' })
+       
+
+
         findOne(@Param('id') id: number) {
         return this.tutorService.getById(id);
   }
@@ -43,9 +58,13 @@ export class TutorController{
    @Get('subject/:subject')
    @ApiOperation({summary: 'looks for a tutor with a matching subject as the one specified', 
    description:'enter the subject of tutor to be returned, outputs tutors with that subject'})
-//    @ApiOkResponse({ description: 'The resource was returned successfully' })
-//   @ApiForbiddenResponse({ description: 'Unauthorized Request' })
-//   @ApiNotFoundResponse({ description: 'Resource not found' })
+   @ApiResponse({status:200, description: 'The resource was returned successfully' })
+    @ApiResponse({status:500, description: 'Internal server error' })
+    @ApiResponse({status:403, description: 'Not allowed access' })
+    @ApiResponse({status:401, description: 'Unathourised' }) 
+    @ApiResponse({status:400, description: 'Bad Request' })
+    @ApiResponse({status:404, description: 'Not Found' })
+       
    @Roles(Role.Users)
    getBySubject(@Param('subject') subject: string) {
        return this.tutorService.getBySubject(subject);
@@ -54,9 +73,12 @@ export class TutorController{
    @Get('location/:location')
    @ApiOperation({summary: 'looks for a tutor with a matching location as the one specified',
    description: 'enter the location of tutor to be returned, outputs tutors in that location'})
-//    @ApiOkResponse({ description: 'The resource was returned successfully' })
-//   @ApiForbiddenResponse({ description: 'Unauthorized Request' })
-//   @ApiNotFoundResponse({ description: 'Resource not found' })
+   @ApiResponse({status:200, description: 'The resource was returned successfully' })
+    @ApiResponse({status:500, description: 'Internal server error' })
+    @ApiResponse({status:403, description: 'Not allowed access' })
+    @ApiResponse({status:401, description: 'Unathourised' }) 
+    @ApiResponse({status:400, description: 'Bad Request' })
+    @ApiResponse({status:404, description: 'Not Found' })
    @Roles(Role.Users)
    getByLocation(@Query('location') location: string) {
        return this.tutorService.getByLocation(location)
@@ -66,11 +88,13 @@ export class TutorController{
    @Patch(':id')
    @ApiOperation({summary: 'updates tutor information of the specified id and saves the updated tutor',
     description: 'enter the id of the tutor to be updated and the updated details'})
-   @ApiOkResponse({ description: 'The resource was updated successfully' })
-  @ApiNotFoundResponse({ description: 'Resource not found' })
-  @ApiForbiddenResponse({ description: 'Unauthorized Request' })
-  @ApiUnprocessableEntityResponse({ description: 'Bad Request' })
-   @Roles(Role.Tutor)
+    @ApiResponse({status:200, description: 'The resource was updated successfully' })
+    @ApiResponse({status:500, description: 'Internal server error' })
+    @ApiResponse({status:403, description: 'Not allowed access' })
+    @ApiResponse({status:401, description: 'Unathourised' }) 
+    @ApiResponse({status:400, description: 'Bad Request' })
+    @ApiResponse({status:404, description: 'Not Found' })
+     @Roles(Role.Tutor)
     async updateproduct(
     @Body() updateTutorDetails: TutorDetails,
     @Param('id',  ParseIntPipe) id: number) {
