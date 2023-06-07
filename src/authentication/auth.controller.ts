@@ -17,12 +17,6 @@ export class AuthController{
    constructor(private authService: AuthService){}
     
    
-   @Post('signin')
-   @ApiOperation({summary: 'checks for tutor account and signs them in if available'})
-   @Roles(Role.Tutor)
-   signin(@Body() logindata: LoginData){
-       return this.authService.signin(logindata)
-   }
 
 
 
@@ -47,6 +41,15 @@ export class AuthController{
    signup(@Body() tutorDetails: TutorDetails) {
     return this.authService.signup(tutorDetails)
     }
+
+
+    
+   @Post('signin')
+   @ApiOperation({summary: 'checks for tutor account and signs them in if available'})
+   @Roles(Role.Tutor)
+   signin(@Body() logindata: LoginData){
+       return this.authService.signin(logindata)
+   }
 
 }
 
