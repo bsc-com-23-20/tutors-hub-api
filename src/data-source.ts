@@ -11,7 +11,7 @@ export const tutorshubDataSource: TypeOrmModuleOptions = {
     password: "CfFybyDKPy",
     database: "sql9624472",
     synchronize: true,
-    logging: false,
+    // logging: false,
     entities: [Tutor, Reviews],
     migrations: [],
     subscribers: [], 
