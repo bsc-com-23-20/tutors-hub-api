@@ -5,11 +5,11 @@ import  {TypeOrmModuleOptions} from '@nestjs/typeorm'
 
 export const tutorshubDataSource: TypeOrmModuleOptions = {
     type: "mysql",
-    host: "sql7.freesqldatabase.com",
+    host: "sql9.freesqldatabase.com",
     port: 3306,
-    username: "sql7624240",
-    password: "nyNhEQhy8U",
-    database: "sql7624240",
+    username: "sql9624472",
+    password: "CfFybyDKPy",
+    database: "sql9624472",
     synchronize: true,
     logging: false,
     entities: [Tutor, Reviews],
