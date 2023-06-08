@@ -14,7 +14,7 @@ export class ReviewController{
   
   @ApiBody({type: ReviewerDetails})
    @Post('reviews')
-   @ApiOperation({summary: 'reviewer post feedback or comments on a the tutors service with the specified id',
+   @ApiOperation({summary: "reviewer posts feedback or comments on a tutor's service with the specified id",
   description: 'post information about a review, tutorID is the id of the tutor we are reviewing'})
   @ApiResponse({status:201, description: 'The resource was successfully created' })
     @ApiResponse({status:500, description: 'Internal server error' })
