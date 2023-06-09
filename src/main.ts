@@ -1,22 +1,24 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const port = process.env.PORT || 3001;
+  const port = process.env.PORT || 3000;
 
-  // documenting swagger
-  const config = new DocumentBuilder()
+  // Create Swagger options
+  const options = new DocumentBuilder()
     .setTitle('TutorsHub API')
-    .setDescription('Nestjs tutors Rest API ')
+    .setDescription('An API where users find tutors and review their services')
     .setVersion('1.0')
-    .addTag('TutorsHub')
     .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup("/" , app, document);
 
-  // app listening at port 3001
+  // Create Swagger document
+  const document = SwaggerModule.createDocument(app, options);
+
+  // Serve Swagger UI at /api/docs
+  SwaggerModule.setup('/', app, document);
+
   await app.listen(port);
 }
 bootstrap();

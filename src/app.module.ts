@@ -1,31 +1,33 @@
-import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
-// import { AppController } from './app.controller';
-// import { AppService } from './app.service';
-import {AuthModule} from './authentication/auth.module';
-import {TypeOrmModule, TypeOrmModuleOptions} from '@nestjs/typeorm'
-import {tutorshubDataSource} from './data-source'
-import { TutorModule } from './Tutors/tutor.module';
-import { ReviewModule } from './reviews/reviews.module';
-import { Tutor } from './entity/Tutor';
-import { Reviews } from './entity/Reviews';
-// import {LoggerMiddleware} from '../src/middlewares/logger.middleware'
-// import { AuthguardModule } from './authguard/authguard.module';
-
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import Tutor from './models/tutors/entities/tutor';
+import { TutorModule } from './models/tutors/module/tutor.module';
+import Reviewer from './models/reviewers/entities/reviewer';
+import { ReviewerModule } from './models/reviewers/module/reviewer.module';
+import { PostModule } from './models/posts/module/post.module';
+import Post from './models/posts/entities/post';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 @Module({
-  imports: [AuthModule, TutorModule, ReviewModule ,TypeOrmModule.forRoot(tutorshubDataSource)],
-  controllers: [],
-  providers: [],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'mernana@03',
+      database: 'tutorshub',
+      entities: [Tutor, Reviewer, Post],
+      synchronize: true,
+    }),
+    TutorModule,
+    ReviewerModule,
+    PostModule,
+    SwaggerModule
+  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
-
-// export class AppModule implements NestModule {
-//   configure(consumer: MiddlewareConsumer){
-//     consumer
-//     .apply(LoggerMiddleware)
-//     .forRoutes('')
-//   }
-// }
-
-
-
