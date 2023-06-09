@@ -13,12 +13,14 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'mernana@03',
-      database: 'tutorshub',
+
+      type: "mysql",
+    host: "sql9.freemysqlhosting.net",
+    port: 3306,
+    username: "sql9624658",
+    password: "8sbi4V5q33",
+    database: "sql9624658",
+     
       entities: [Tutor, Reviewer, Post],
       synchronize: true,
     }),
