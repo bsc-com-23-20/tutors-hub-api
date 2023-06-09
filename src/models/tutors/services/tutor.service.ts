@@ -5,12 +5,15 @@ import { compare, hash } from 'bcrypt';
 import Tutor from '../entities/tutor';
 import { CreateUserDto, UpdateUserDto } from '../dtos/tutor.dto';
 import * as bcrypt from 'bcrypt';
+import { PostService } from '../../posts/services/post.service';
 
-@Injectable()
+
+  @Injectable()
 export class TutorService {
   constructor(
     @InjectRepository(Tutor)
     private readonly tutorRepo: Repository<Tutor>,
+    private readonly postService: PostService,
   ) {}
 
   async createUser(user: CreateUserDto) {
@@ -79,11 +82,23 @@ export class TutorService {
     }
   }
 
+ 
+
   async deleteUserById(id: number) {
-    const user = await this.tutorRepo.findOneBy({ id: id });
+    const user = await this.tutorRepo.findOne({
+      where: {
+        id: id,
+      },
+      relations: {
+        posts: true,
+      },
+    });
     if (!user) {
       throw new HttpException('user not found', HttpStatus.BAD_REQUEST);
     }
+    await user.posts.map((post) => {
+      this.postService.deletePost(post.id);
+    });
     await this.tutorRepo.delete({ id: id });
     return HttpStatus.OK, 'user removed successfully';
   }

@@ -9,7 +9,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { PostService } from '../services/post.service';
-import { CreatePostDto, UpdatePostDto } from '../dtos/post.dto';
+import { CreatePostDto, UpdatePostDto, ReviewPostDto } from '../dtos/post.dto';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 @ApiTags('Posts')
@@ -77,7 +77,7 @@ export class PostController {
     return { post };
   }
 
-  @Get('location/:location/:location')
+  @Get('location/:location')
   @ApiOperation({summary: 'gets posts with the specified location',
       description: 'enter the location of the posts you want to get'})
       @ApiResponse({status:200, description: 'The resource was returned successfully' })
@@ -86,9 +86,8 @@ export class PostController {
     @ApiResponse({status:401, description: 'Unathourised' }) 
     @ApiResponse({status:400, description: 'Bad Request' })
     @ApiResponse({status:404, description: 'Not Found' })
-  async getPostByLocation(@Param('location') location: string) {
-    const post = await this.postService.getPostBySubject(location);
-    return { post };
+  async getPostByLocation(@Param('location') location: string) { 
+    return this.postService.getPostByLocation(location);
   }
 
   @Patch(':id')
@@ -128,10 +127,15 @@ export class PostController {
     @ApiResponse({status:401, description: 'Unathourised' }) 
     @ApiResponse({status:400, description: 'Bad Request' })
     @ApiResponse({status:404, description: 'Not Found' })
-  async reviewPost(
-    @Param('id') id: number,
-    @Body() reviewerData: { reviewerId: number; comments: string[] },
-  ) {
-    return this.postService.reviewPost(id, reviewerData);
-  }
+
+    
+    async reviewPost(
+      @Param('id') id: number,
+      @Body() reviewerData: ReviewPostDto,
+    ) {
+      return this.postService.reviewPost(id, reviewerData);
+    }
+
+
+  
 }

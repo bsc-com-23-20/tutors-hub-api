@@ -18,6 +18,9 @@ export class CreateUserDto {
   @IsNotEmpty()
   user_name: string;
 
+  @ApiProperty({ example: 'johndoe.png', description: 'User imageUrl' })
+  imageUrl: string;
+
   @ApiProperty({ example: 'password', description: 'User password' })
   @IsNotEmpty()
   @MinLength(6)

@@ -58,18 +58,20 @@ export class TutorController {
     return this.tutorService.getUserById(id);
   }
 
-  // @Delete(':id')
-  // @ApiOperation({summary: 'deletes a tutor account with the specified id',
-  //   description: 'enter the id of the tutor you want to delete'})
-  //   @ApiResponse({status:200, description: 'delete was successful' })
-  //   @ApiResponse({status:500, description: 'Internal server error' })
-  //   @ApiResponse({status:403, description: 'Not allowed access' })
-  //   @ApiResponse({status:401, description: 'Unathourised' }) 
-  //   @ApiResponse({status:400, description: 'Bad Request' })
-  //   @ApiResponse({status:404, description: 'Not Found' })
-  // async deleteUserById(@Param('id') id: number) {
-  //   return this.tutorService.deleteUserById(id);
-  // }
+  
+
+  @Delete(':id')
+  @ApiOperation({summary: 'deletes a tutor account with the specified id',
+    description: 'enter the id of the tutor you want to delete'})
+    @ApiResponse({status:200, description: 'delete was successful' })
+    @ApiResponse({status:500, description: 'Internal server error' })
+    @ApiResponse({status:403, description: 'Not allowed access' })
+    @ApiResponse({status:401, description: 'Unathourised' }) 
+    @ApiResponse({status:400, description: 'Bad Request' })
+    @ApiResponse({status:404, description: 'Not Found' })
+  async deleteUserById(@Param('id') id: number) {
+    return this.tutorService.deleteUserById(id);
+  }
 
   @Patch(':id')
   @ApiOperation({summary: 'updates tutor information of the specified id and saves the updated tutor',

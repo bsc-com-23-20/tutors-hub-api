@@ -53,8 +53,10 @@ class Tutor {
   })
   email: string;
 
-  @Column()
+  
+  @Column({nullable: true})
   imageUrl: string;
+
 
   @Column({default: "Tutor"})
   role: string;

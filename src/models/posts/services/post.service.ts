@@ -73,7 +73,7 @@ export class PostService {
   }
 
   async getPostBySubject(subject: string): Promise<Post> {
-    const post = await this.postRepo.findOneBy({ subject });
+    const post = await this.postRepo.findOneBy({ subject: subject });
     if (!post) {
       throw new NotFoundException('Post not found');
     }
@@ -81,7 +81,7 @@ export class PostService {
   }
 
   async getPostByLocation(location: string): Promise<Post> {
-    const post = await this.postRepo.findOneBy({ location });
+    const post = await this.postRepo.findOneBy({ location: location });
     if (!post) {
       throw new NotFoundException('Post not found');
     }
