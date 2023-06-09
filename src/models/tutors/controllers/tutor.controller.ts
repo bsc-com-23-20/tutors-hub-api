@@ -10,13 +10,12 @@ import {
 } from '@nestjs/common';
 import { TutorService } from '../services/tutor.service';
 import { CreateUserDto, UpdateUserDto } from '../dtos/tutor.dto';
-import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 
 @ApiTags('Tutors')
 @Controller('tutors')
 export class TutorController {
   constructor(private tutorService: TutorService) {}
-  
 
   @Get()
   @ApiOperation({summary: 'gets all tutor accounts available, displays tutor information', 
@@ -30,7 +29,7 @@ export class TutorController {
   async getUsers() {
     return this.tutorService.getUsers();
   }
-  
+
   @Post()
   @ApiOperation({summary: 'creates a new tutor account, tutor has to post information', 
   description: 'post tutors information as shown below,with the role specified as tutor'})
@@ -40,7 +39,6 @@ export class TutorController {
    @ApiResponse({status:401, description: 'Unathourised' }) 
    @ApiResponse({status:400, description: 'Bad Request' })
    @ApiResponse({status:404, description: 'Not Found' })
-
   async createTutor(@Body(ValidationPipe) userData: CreateUserDto) {
     return this.tutorService.createUser(userData);
   }
@@ -58,8 +56,6 @@ export class TutorController {
     return this.tutorService.getUserById(id);
   }
 
-  
-
   @Delete(':id')
   @ApiOperation({summary: 'deletes a tutor account with the specified id',
     description: 'enter the id of the tutor you want to delete'})
@@ -75,13 +71,13 @@ export class TutorController {
 
   @Patch(':id')
   @ApiOperation({summary: 'updates tutor information of the specified id and saves the updated tutor',
-    description: 'enter the id of the tutor to be updated and the updated details'})
-    @ApiResponse({status:200, description: 'The resource was updated successfully' })
-    @ApiResponse({status:500, description: 'Internal server error' })
-    @ApiResponse({status:403, description: 'Not allowed access' })
-    @ApiResponse({status:401, description: 'Unathourised' }) 
-    @ApiResponse({status:400, description: 'Bad Request' })
-    @ApiResponse({status:404, description: 'Not Found' })
+  description: 'enter the id of the tutor to be updated and the updated details'})
+  @ApiResponse({status:200, description: 'The resource was updated successfully' })
+  @ApiResponse({status:500, description: 'Internal server error' })
+  @ApiResponse({status:403, description: 'Not allowed access' })
+  @ApiResponse({status:401, description: 'Unathourised' }) 
+  @ApiResponse({status:400, description: 'Bad Request' })
+  @ApiResponse({status:404, description: 'Not Found' })
   async updateUserById(
     @Param('id') id: number,
     @Body(ValidationPipe) updateUserDto: UpdateUserDto,

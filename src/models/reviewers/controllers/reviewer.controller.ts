@@ -9,6 +9,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { ReviewerService } from '../services/reviewer.service';
+import { PostService } from '../../posts/services/post.service';
 import { CreateUserDto, UpdateUserDto } from '../dtos/reviewer.dto';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
@@ -56,28 +57,16 @@ export class ReviewerController {
     return this.reviewerService.getUserById(id);
   }
 
-  @Delete(':id')
-  @ApiOperation({summary: 'deletes the reviewer of the specified id in the database', 
-  description: 'enter the id of a particular review you want to delete '})
-  @ApiResponse({status:200, description: 'successfully deleted the review ' })
-    @ApiResponse({status:500, description: 'Internal server error' })
-    @ApiResponse({status:403, description: 'Not allowed access' })
-    @ApiResponse({status:401, description: 'Unathourised' }) 
-    @ApiResponse({status:400, description: 'Bad Request' })
-    @ApiResponse({status:404, description: 'Not Found' })
-  async deleteUserById(@Param('id') id: number) {
-    return this.reviewerService.deleteUserById(id);
-  }
 
   @Patch(':id')
   @ApiOperation({summary: 'updates reviewer information of the specified reviewer',
-    description: 'emter the id of the review you want to update'})
-    @ApiResponse({status:200, description: 'The resource was updated successfully' })
-    @ApiResponse({status:500, description: 'Internal server error' })
-    @ApiResponse({status:403, description: 'Not allowed access' })
-    @ApiResponse({status:401, description: 'Unathourised' }) 
-    @ApiResponse({status:400, description: 'Bad Request' })
-    @ApiResponse({status:404, description: 'Not Found' })
+  description: 'emter the id of the review you want to update'})
+  @ApiResponse({status:200, description: 'The resource was updated successfully' })
+  @ApiResponse({status:500, description: 'Internal server error' })
+  @ApiResponse({status:403, description: 'Not allowed access' })
+  @ApiResponse({status:401, description: 'Unathourised' }) 
+  @ApiResponse({status:400, description: 'Bad Request' })
+  @ApiResponse({status:404, description: 'Not Found' })
   async updateUserById(
     @Param('id') id: number,
     @Body(ValidationPipe) updateUserDto: UpdateUserDto,

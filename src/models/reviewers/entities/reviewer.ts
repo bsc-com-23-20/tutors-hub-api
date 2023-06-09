@@ -1,7 +1,6 @@
-// import Post from 'src/models/posts/entities/post';
-// import Tutor from 'src/models/tutors/entities/tutor';
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import Post from '../../posts/entities/post';
+import Tutor from '../../tutors/entities/tutor';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'reviewers' })
 class Reviewer {

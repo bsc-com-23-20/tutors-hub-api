@@ -9,8 +9,8 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { PostService } from '../services/post.service';
-import { CreatePostDto, UpdatePostDto, ReviewPostDto } from '../dtos/post.dto';
-import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { CreatePostDto, ReviewPostDto, UpdatePostDto } from '../dtos/post.dto';
+import { ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 
 @ApiTags('Posts')
 @Controller('posts')
@@ -47,9 +47,7 @@ export class PostController {
   }
 
   @Get(':id')
- 
-  
-@ApiOperation({summary: 'gets a post with the specified id',
+  @ApiOperation({summary: 'gets a post with the specified id',
       description: 'enter the id of the post you want to get'})
       @ApiResponse({status:200, description: 'The resource was returned successfully' })
     @ApiResponse({status:500, description: 'Internal server error' })
@@ -58,11 +56,8 @@ export class PostController {
     @ApiResponse({status:400, description: 'Bad Request' })
     @ApiResponse({status:404, description: 'Not Found' })
   async getPostById(@Param('id') id: number) {
-    const post = await this.postService.getPostById(id);
-    return { post };
+    return this.postService.getPostById(id);
   }
-
-
   @Get('subject/:subject')
   @ApiOperation({summary: 'gets posts with the specified subject',
   description: 'enter the subject of the posts you want to get'})
@@ -73,11 +68,9 @@ export class PostController {
 @ApiResponse({status:400, description: 'Bad Request' })
 @ApiResponse({status:404, description: 'Not Found' })
   async getPostBySubject(@Param('subject') subject: string) {
-    const post = await this.postService.getPostBySubject(subject);
-    return { post };
+    return this.postService.getPostBySubject(subject);
   }
-
-  @Get('location/:location')
+  @Get('/location/:location')
   @ApiOperation({summary: 'gets posts with the specified location',
       description: 'enter the location of the posts you want to get'})
       @ApiResponse({status:200, description: 'The resource was returned successfully' })
@@ -86,7 +79,7 @@ export class PostController {
     @ApiResponse({status:401, description: 'Unathourised' }) 
     @ApiResponse({status:400, description: 'Bad Request' })
     @ApiResponse({status:404, description: 'Not Found' })
-  async getPostByLocation(@Param('location') location: string) { 
+  async getPostByLocation(@Param('location') location: string) {
     return this.postService.getPostByLocation(location);
   }
 
@@ -120,22 +113,17 @@ export class PostController {
   }
   @Post(':id/review')
   @ApiOperation({summary: "posts a review about a particular tutor",
-  description: 'indicate the id you eant to make a review for and post reviewer comments'})
+  description: 'indicate the id of the post you want to make a review for and post reviewer comments'})
   @ApiResponse({status:201, description: 'The post was successfully created' })
     @ApiResponse({status:500, description: 'Internal server error' })
     @ApiResponse({status:403, description: 'Not allowed access' })
     @ApiResponse({status:401, description: 'Unathourised' }) 
     @ApiResponse({status:400, description: 'Bad Request' })
     @ApiResponse({status:404, description: 'Not Found' })
-
-    
-    async reviewPost(
-      @Param('id') id: number,
-      @Body() reviewerData: ReviewPostDto,
-    ) {
-      return this.postService.reviewPost(id, reviewerData);
-    }
-
-
-  
+  async reviewPost(
+    @Param('id') id: number,
+    @Body() reviewerData: ReviewPostDto,
+  ) {
+    return this.postService.reviewPost(id, reviewerData);
+  }
 }

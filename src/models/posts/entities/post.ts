@@ -1,6 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
-import Tutor from '../../tutors/entities/tutor';
 import Reviewer from '../../reviewers/entities/reviewer';
+import Tutor from '../../tutors/entities/tutor';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 
 @Entity({ name: 'posts' })
 class Post {
@@ -38,14 +38,8 @@ class Post {
   tutor: Tutor;
 
   @ManyToOne(() => Reviewer, (reviewer) => reviewer.posts)
-  @JoinColumn({ name: 'reviewerId' })
+  // @JoinColumn({ name: 'reviewerId' })
   reviewer: Reviewer;
 }
 
 export default Post;
-
-
-
-
-  
-

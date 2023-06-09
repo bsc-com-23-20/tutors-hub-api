@@ -1,14 +1,12 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { compare, hash } from 'bcrypt';
 import Tutor from '../entities/tutor';
 import { CreateUserDto, UpdateUserDto } from '../dtos/tutor.dto';
 import * as bcrypt from 'bcrypt';
 import { PostService } from '../../posts/services/post.service';
-
-
-  @Injectable()
+//import { TutorModule }
+@Injectable()
 export class TutorService {
   constructor(
     @InjectRepository(Tutor)
@@ -81,8 +79,6 @@ export class TutorService {
       console.log(error);
     }
   }
-
- 
 
   async deleteUserById(id: number) {
     const user = await this.tutorRepo.findOne({

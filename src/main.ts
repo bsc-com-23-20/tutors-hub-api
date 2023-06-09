@@ -9,7 +9,7 @@ async function bootstrap() {
   // Create Swagger options
   const options = new DocumentBuilder()
     .setTitle('TutorsHub API')
-    .setDescription('An API where users find tutors and review their services')
+    .setDescription('An API that has users as tutors, reviewers and users that search for information about tutors')
     .setVersion('1.0')
     .build();
 

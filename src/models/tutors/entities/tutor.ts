@@ -1,10 +1,6 @@
-// import Post from 'src/models/posts/entities/post';
-// import Reviewer from 'src/models/reviewers/entities/reviewer';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import Post from '../../posts/entities/post';
-// import { Post } from '@nestjs/common';
-// import Post from '../../posts/entities/post';
-
+import Reviewer from '../../reviewers/entities/reviewer';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'tutors' })
 class Tutor {
@@ -53,10 +49,8 @@ class Tutor {
   })
   email: string;
 
-  
   @Column({nullable: true})
   imageUrl: string;
-
 
   @Column({default: "Tutor"})
   role: string;

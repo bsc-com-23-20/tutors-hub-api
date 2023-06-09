@@ -7,10 +7,9 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import Post from '../entities/post';
-import { CreatePostDto, UpdatePostDto } from '../dtos/post.dto';
+import { CreatePostDto, ReviewPostDto, UpdatePostDto } from '../dtos/post.dto';
+import Reviewer from '../../reviewers/entities/reviewer';
 import { ReviewerService } from '../../reviewers/services/reviewer.service';
-// import Reviewer from 'src/models/reviewers/entities/reviewer';
-// import { ReviewerService } from 'src/models/reviewers/services/reviewer.service';
 
 @Injectable()
 export class PostService {
@@ -35,13 +34,10 @@ export class PostService {
     return this.postRepo.find({ relations: ['tutor'] });
   }
 
-  async reviewPost(
-    postId: number,
-    reviewerData: { reviewerId: number; comments: string[] },
-  ): Promise<Post> {
+  async reviewPost(postId: number, reviewerData: ReviewPostDto): Promise<Post> {
     const post = await this.postRepo.findOne({
       where: {
-        id: reviewerData.reviewerId,
+        id: postId,
       },
       relations: {
         reviewer: true,
@@ -87,7 +83,6 @@ export class PostService {
     }
     return post;
   }
-
 
   async updatePost(id: number, updatePostDto: UpdatePostDto) {
     const post = await this.getPostById(id);

@@ -5,12 +5,15 @@ import { compare, hash } from 'bcrypt';
 import Reviewer from '../entities/reviewer';
 import { CreateUserDto, UpdateUserDto } from '../dtos/reviewer.dto';
 import * as bcrypt from 'bcrypt';
+import { PostService } from '../../posts/services/post.service';
+import Post from '../../posts/entities/post';
 
 @Injectable()
 export class ReviewerService {
   constructor(
     @InjectRepository(Reviewer)
     private readonly reviewerRepo: Repository<Reviewer>,
+    // private readonly postService: PostService
   ) {}
 
   async createUser(user: CreateUserDto) {
@@ -79,12 +82,8 @@ export class ReviewerService {
     }
   }
 
-  async deleteUserById(id: number) {
-    const user = await this.reviewerRepo.findOneBy({ id: id });
-    if (!user) {
-      throw new HttpException('user not found', HttpStatus.BAD_REQUEST);
-    }
-    await this.reviewerRepo.delete({ id: id });
-    return HttpStatus.OK, 'user removed successfully';
-  }
+  
+  
 }
+
+

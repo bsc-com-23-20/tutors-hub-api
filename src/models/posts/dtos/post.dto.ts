@@ -3,9 +3,9 @@ import {
   IsNotEmpty,
   MinLength,
   IsOptional,
-  ArrayMinSize,
-  ArrayNotEmpty,
   IsArray,
+  ArrayNotEmpty,
+  ArrayMinSize,
 } from '@nestjs/class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -75,10 +75,8 @@ export class UpdatePostDto {
   @IsOptional()
   location?: string;
 }
-
-
 export class ReviewPostDto {
-  @ApiProperty({ example: 1})
+  @ApiProperty()
   @IsNotEmpty()
   reviewerId: number;
 
@@ -88,4 +86,3 @@ export class ReviewPostDto {
   @ArrayMinSize(1)
   comments: string[];
 }
-
